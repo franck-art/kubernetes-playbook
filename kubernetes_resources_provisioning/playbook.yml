@@ -1,0 +1,43 @@
+---
+- hosts: local
+  become: true
+  gather_facts: false
+  connection: local
+
+  collections:
+    - community.kubernetes
+
+
+
+  tasks:
+
+    - name: Install python3-pip
+      shell: sudo yum install python3-pip 
+
+    - name: Install PyYAML
+      shell: sudo pip3 install PyYAML
+   
+    - name: Install openshift
+      shell: sudo pip3 install openshift
+
+    - name: upgrade openshift
+      shell: sudo pip3 install --upgrade --user openshift
+
+
+    - name: Ensure the myapp Namespace exists.
+      k8s:
+        api_version: v1
+        kind: Namespace
+        name: franck
+        state: present
+
+    - name: Create a Deployment by reading the definition from a local file
+      k8s:
+        state: present
+        src: deployment.yml
+
+    - name: Create a Service with service.yml file
+      k8s:
+        state: present
+        src: service.yml
+

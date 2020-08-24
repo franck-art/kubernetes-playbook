@@ -1,0 +1,40 @@
+---
+
+- name: Install kubernetes cluster
+  hosts: localhost
+  gather_facts: yes
+  become: true
+
+
+  vars:
+    kubernetes_allow_pods_on_master: true
+    kubernetes_role: "node"
+
+
+    pip_install_packages:
+      - name: docker
+
+  pre_tasks:
+    - name: update all packages
+      yum:
+        name: '*'
+        update_only: yes
+        update_cache: yes
+        state: present
+ 
+    - name: install python-pip
+      package: name=python3-pip state=present update_cache=yes
+
+    - name: Install EPEL repo
+      package: name=epel-release state=present
+      when: ansible_distribution == "CentOS"
+
+    - name: Install openshift
+      shell: sudo pip3 install openshift
+
+    - name: upgrade openshift
+      shell: sudo pip3 install --upgrade --user openshift
+
+  roles:
+    - geerlingguy.docker
+    - geerlingguy.kubernetes
