@@ -8,8 +8,8 @@ Prerequisites
 * git
 * Two AWS VMs: master-node and worker-node
 
-Configuration
--------------
+Configuration (in root mode)
+----------------------------
 
 1. download the project in each other nodes
    on the master node and worker node, 
