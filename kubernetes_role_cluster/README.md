@@ -41,4 +41,5 @@ Configuration (in root mode)
    ```
 
 References
+
 `https://phoenixnap.com/kb/how-to-install-kubernetes-on-centos`
