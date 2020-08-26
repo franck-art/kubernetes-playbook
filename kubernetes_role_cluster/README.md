@@ -24,7 +24,7 @@ Configuration
 * configure the ip address in **groups_vars/all.yml** file and **hosts** file 
 * launch playbook
 
-` ansible-playbook --private-key vars/devops.pem  -i hosts  launch.yml `
+` ansible-playbook --private-key vars/devops.pem  -i hosts  launch.yml --ask-vault-pass `
 
 3. Command to Join cluster node (worker node)
 * copy     the command in **/home/centos/join_message** file in the end of file and and execute the command in the *worker-node*
