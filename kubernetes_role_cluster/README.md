@@ -24,8 +24,11 @@ Prerequisites
 ` ansible-playbook --private-key vars/devops.pem  -i hosts  launch.yml `
 
 3. Command to Join cluster node (worker node)
-* copy     the command in **/home/centos/join_message** file in the end of file and and execute the command in the worker-node
-4. Verify the connection between master and node
+* copy     the command in **/home/centos/join_message** file in the end of file and and execute the command in the *worker-node*
+
+4. Open the ports: **6443 and 8285**
+
+5. Verify the connection between master and node
    
    ```
       **sudo kubectl get nodes**
