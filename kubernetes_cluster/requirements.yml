@@ -1,0 +1,11 @@
+---
+
+# install pip
+- src: geerlingguy.pip
+
+# install docker
+- src: geerlingguy.docker
+
+# install docker
+- src: geerlingguy.kubernetes
+
