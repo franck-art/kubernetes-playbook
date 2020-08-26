@@ -1,5 +1,6 @@
 ---
-# tasks file for kubernetes master
+# tasks file for kubernetes worker
+
 
 
 - name: Configure Kubernetes Repository
@@ -13,24 +14,23 @@
     repo_gpgcheck=1
     gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
     EOF
-  
 
 - name: install kubelet
   yum:
     name: kubelet
-    state: installed
+    state: present
 
 
 - name: install kubeadm
   yum:
     name: kubeadm
-    state: installed
+    state: present
 
 
 - name: install kubectl
   yum:
     name: kubectl
-    state: installed
+    state: present
 
 
 - name: Enable kubelet service
@@ -42,7 +42,7 @@
 
 - name: set hostname node
   hostname:
-    name: master-node
+    name: worker-node
 
 - name: copy hosts.j2 file to /etc/hosts
   template: 
@@ -81,36 +81,6 @@
 
 - name: Disable SWAP
   shell: sudo sed -i '/swap/d' /etc/fstab && sudo swapoff -a
-
-
-- name: create join_message.sh file
-  file:
-    path: "{{ home }}/join_message.sh"
-    state: touch
-
-- name: Create Cluster with kubeadm
-  shell: sudo kubeadm init --pod-network-cidr=10.244.0.0/16 >> "{{ home }}/join_message.sh"
-  register: join_message
-  ignore_errors: yes
-
-
-
-- name: create kube directory
-  file:
-    path: $HOME/.kube
-    state: directory
-    owner: root
-
-- name: copy admin.conf to .kube/config
-  shell: cat  /etc/kubernetes/admin.conf > $HOME/.kube/config
-
-- name: Run cluster by regular user
-  shell: sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-- name: Set Up Pod Network
-  shell: sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-    
-
 
 
 

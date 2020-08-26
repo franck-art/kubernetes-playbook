@@ -2,6 +2,10 @@
 
 
 
-master_node: "3.236.249.177"
+master_node: "35.170.73.144"
 
-worker_node: "35.174.185.196"
+worker_node: "34.204.90.222"
+
+home: "/home/centos"
+
+join_message: ""

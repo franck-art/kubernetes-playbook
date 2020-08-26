@@ -1,11 +1,10 @@
 ---
 
-# zabbix playbook
-- name: Zabbix Playbook Installation
-  hosts: localhost
+# Cluster node installation
+- name: Cluster master node installation with kubeadm
+  hosts: master-node
   gather_facts: yes
-  become: true
-
+  become: yes
 
   vars:
     pip_install_packages:
@@ -15,9 +14,39 @@
 
     pip_executable: pip
 
+  pre_tasks:
+   - name: install python-pip
+     package: name=python-pip state=present update_cache=yes
+
 
   roles:
     - { role: geerlingguy.pip }
     - { role: geerlingguy.docker }
     - { role: KubernetesMaster }
-    
+
+
+
+# Cluster node installation
+- name: Cluster worker node installation with kubeadm
+  hosts: worker-node
+  gather_facts: yes
+  become: yes
+
+  vars:
+    pip_install_packages:
+      - name: docker
+
+    pip_package: python-pip
+
+    pip_executable: pip
+
+  pre_tasks:
+   - name: install python-pip
+     package: name=python-pip state=present update_cache=yes
+
+
+  roles:
+    - { role: geerlingguy.pip }
+    - { role: geerlingguy.docker }
+    - { role: KubernetesWorker }
+
