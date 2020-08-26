@@ -39,3 +39,6 @@ Configuration (in root mode)
         master-node   Ready    master   82m   v1.19.0
         worker-node   Ready    <none>   66m   v1.19.0
    ```
+
+References
+`https://phoenixnap.com/kb/how-to-install-kubernetes-on-centos`
