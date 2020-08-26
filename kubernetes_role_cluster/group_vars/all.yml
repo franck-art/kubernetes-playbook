@@ -1,0 +1,11 @@
+---
+
+
+
+master_node: "100.24.126.146"
+
+worker_node: "35.172.164.168"
+
+home: "/home/centos"
+
+join_message: ""

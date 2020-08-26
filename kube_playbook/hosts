@@ -1,8 +1,0 @@
-[master-node]
-35.170.73.144   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python 
-
-
-
-[worker-node]
-34.204.90.222   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python
-
