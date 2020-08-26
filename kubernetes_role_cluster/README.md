@@ -6,7 +6,7 @@ Prerequisites
 
 * ansible
 * git
-* Two VM: master-node and worker-node
+* Two AWS VMs: master-node and worker-node
 
 1. download the project in each other nodes
    on the master node and worker node, 
