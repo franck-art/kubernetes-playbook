@@ -1,0 +1,23 @@
+---
+
+# zabbix playbook
+- name: Zabbix Playbook Installation
+  hosts: localhost
+  gather_facts: yes
+  become: true
+
+
+  vars:
+    pip_install_packages:
+      - name: docker
+
+    pip_package: python-pip
+
+    pip_executable: pip
+
+
+  roles:
+    - { role: geerlingguy.pip }
+    - { role: geerlingguy.docker }
+    - { role: KubernetesMaster }
+    
