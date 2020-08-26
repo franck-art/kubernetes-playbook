@@ -1,6 +1,0 @@
-# install docker
-- src: geerlingguy.docker
-
-# install pip
-
-- src: geerlingguy.pip
